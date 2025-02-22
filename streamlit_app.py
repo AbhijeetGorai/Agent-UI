@@ -37,7 +37,7 @@ user_query = st.text_input('Enter your query:')
 if st.button('Submit'):
     if user_query:
         # Call the API with the user query
-        api_url = 'https://agent-demo-xkj0.onrender.com'  # Replace with your actual API endpoint
+        api_url = 'https://agent-demo-xkj0.onrender.com/search'  # Replace with your actual API endpoint
         response = requests.post(api_url, json={'question': user_query})
         if response.status_code == 200:
             st.subheader('Response:')
