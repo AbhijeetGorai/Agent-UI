@@ -40,7 +40,7 @@ if st.button('Submit'):
         api_url = 'https://agent-demo-xkj0.onrender.com/search'
         headers = {'Content-Type': 'application/json'}
         try:
-            response = requests.post(api_url, json={'question': user_query}, headers=headers, timeout=10)
+            response = requests.post(api_url, json={'query': user_query}, headers=headers, timeout=10)
             if response.status_code == 200:
                 st.subheader('Response:')
                 st.write(response.json())
