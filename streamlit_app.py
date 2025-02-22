@@ -37,13 +37,17 @@ user_query = st.text_input('Enter your query:')
 if st.button('Submit'):
     if user_query:
         # Call the API with the user query
-        api_url = 'https://agent-demo-xkj0.onrender.com/search'  # Replace with your actual API endpoint
-        response = requests.post(api_url, json={'question': user_query})
-        if response.status_code == 200:
-            st.subheader('Response:')
-            st.write(response.json())
-        else:
-            st.error('Failed to get response from API')
+        api_url = 'https://agent-demo-xkj0.onrender.com/search'
+        headers = {'Content-Type': 'application/json'}
+        try:
+            response = requests.post(api_url, json={'question': user_query}, headers=headers, timeout=10)
+            if response.status_code == 200:
+                st.subheader('Response:')
+                st.write(response.json())
+            else:
+                st.error(f"Failed to get response from API. Status code: {response.status_code}")
+                st.write(response.text)
+        except Exception as e:
+            st.error(f"Request failed: {e}")
     else:
         st.warning('Please enter a query before submitting!')
-
